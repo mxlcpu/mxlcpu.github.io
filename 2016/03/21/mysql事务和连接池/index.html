@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head tag -->
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  
+  <title>mysql事务和连接池 - 北国风神</title>
+
+  <!--Favicon-->
+  <link rel="icon" href="favicon/favicon.ico">
+
+  <!--Description-->
+  
+      <meta name="description" content="分享技术,分享生活">
+  
+
+  <!--Author-->
+  
+      <meta name="author" content="MengHsiaolei">
+  
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans:300,800" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-108380190-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+</head>
+
+
+  <body>
+  	<div class="container-fluid navbar-container m-sm-5">
+      <!-- Header -->
+      <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
+  <a class="navbar-brand ml-2" href="/">北国风神</a>
+  <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto my-auto">
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/about">关于</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="http://weibo.com/945671858">微博</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.facebook.com/mxlcpu">脸书</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/cpumxlcpu">推特</a>
+        </li>
+      
+    </ul>
+    <hr class="hidden-md-up" />
+  </div>
+</nav>
+
+
+  		<div class="row">
+  			<div class="col-12 mb-4">
+  <img class="img-fluid project-img" src="/images/4.jpg" alt="mysql事务和连接池">
+</div>
+<div class="col-lg-4 col-12 pt-3 px-4 pr-lg-5">
+  <h1>mysql事务和连接池</h1>
+</div>
+<div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
+  <h1 id="mysql事务"><a href="#mysql事务" class="headerlink" title="mysql事务"></a>mysql事务</h1><h2 id="mysql中的事务"><a href="#mysql中的事务" class="headerlink" title="mysql中的事务"></a>mysql中的事务</h2><ul>
+<li>默认自动提交,每条语句都处在单独的事务中</li>
+<li>手动控制事务:<ul>
+<li>开启事务:begin,start transaction</li>
+<li>提交事务:commit</li>
+<li>回滚事务:rollback<h2 id="JDBC如何控制事务"><a href="#JDBC如何控制事务" class="headerlink" title="JDBC如何控制事务"></a>JDBC如何控制事务</h2></li>
+</ul>
+</li>
+<li>java代码中<ul>
+<li>connection.setAutoCommit(false);开启事务(关闭自动提交)相当于begin</li>
+<li>connection.commit();提交事务,相当于commit</li>
+<li>connection.rollback();抛出异常时回滚事务,相当于rollback<h2 id="事务的特性（面试题）"><a href="#事务的特性（面试题）" class="headerlink" title="事务的特性（面试题）"></a>事务的特性（面试题）</h2></li>
+</ul>
+</li>
+<li>原子性:指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生</li>
+<li>一致性:事务必须使数据库从一个一致性状态变换到另外一个一致性状态。如转账前和转账后的总金额不变</li>
+<li>隔离性:事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离</li>
+<li>持久性:指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响<h2 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h2></li>
+<li><p>读的问题</p>
+<ul>
+<li>赃读:指一个事务读取了另一个事务未提交的数据</li>
+<li>不可重复读:意思是重复读的话会读到不一样的而数据即在一个事务内读取表中的某一行数据，多次读取结果不同。一个事务读取到了另一个事务提交后的数据。（update）</li>
+<li>虚读（幻读）:是指在一个事务内读取到了别的事务插入的数据，导致前后读取不一致。        (insert)</li>
+</ul>
+</li>
+<li><p>避免读的问题发生(设置事物的隔离级别)</p>
+<ul>
+<li>READ UNCOMMITTED:读未提交级别及以上的,即赃读、不可重复读、虚读都有可能发生</li>
+<li>READ COMMITTED:读已提交级别及以上的,即避免赃读。但不可重复读、虚读都有可能发生。（oracle默认的）</li>
+<li>REPEATABLE READ:读重复读级别及以上的,即避免赃读和不可重复读。但虚读有可能发生。（mysql默认）</li>
+<li>SERIALIZABLE:避免赃读、不可重复读、虚读</li>
+</ul>
+</li>
+<li>写问题<ul>
+<li>两类丢失更新的问题<ul>
+<li>A事务撤销回滚时，把已经提交的B事务的更新数据覆盖了</li>
+<li>A事务提交时覆盖B事务已经提交的数据，造成B事务所做操作丢失</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>避免写的问题发生<ul>
+<li>悲观锁,一个锁定系统，可以阻止用户以影响其他用户的方式修改数据。如果用户执行的操作导致应用了某个锁，只有这个锁的所有者释放该锁，其他用户才能执行与该锁冲突的操作。这种方法之所以称为悲观并发控制，是因为它主要用于数据争用激烈的环境中，以及发生并发冲突时用锁保护数据的成本低于回滚事务的成本的环境中.悲观锁常见的问题就是死锁,例如A在修改文件T1，B在修改文件T2，他们分别锁定了这两个文件，假设T1和T2内容相关，B在修改T2的时候发现他还需要修改T1，可是T1却被A锁定；与此同时，A在修改T1的时候也发现了他还需要修改T2，可是T2又被B锁定了，这样就出现了死锁</li>
+<li>乐观锁,用户读取数据时不锁定数据。当一个用户更新数据时，系统将进行检查，查看该用户读取数据后其他用户是否又更改了该数据。如果其他用户更新了数据，将产生一个错误。一般情况下，收到错误信息的用户将回滚事务并重新开始。这种方法之所以称为乐观并发控制，是由于它主要在以下环境中使用：数据争用不大且偶尔回滚事务的成本低于读取数据时锁定数据的成本。</li>
+<li>mysql中查看当前事务级别:SELECT @@TX_ISOLATION;</li>
+<li>更改当前事务的级别:SET TRANSACTION ISOLATION LEVEL 四个级别之一。设置隔离级别必须在事务之前。<h2 id="JDBC控制事务的隔离级别"><a href="#JDBC控制事务的隔离级别" class="headerlink" title="JDBC控制事务的隔离级别"></a>JDBC控制事务的隔离级别</h2></li>
+</ul>
+</li>
+<li>Connection接口:4<ul>
+<li>Connection.setTransactionIsolation(int level);<ul>
+<li>TRANSACTION_READ_COMMITED  避免赃读。不可重复读、虚读都有可能发生</li>
+<li>TRANSACTION_READ_UNCOMMITED  赃读、不可重复读、虚读都有可能发生</li>
+<li>TRANSACTION_REPEATABLE_READ  避免赃读、不可重复读。虚读有可能发生</li>
+<li>TRANSACTION_SERIALIZABLE  避免赃读、不可重复读、虚读<h1 id="连接池"><a href="#连接池" class="headerlink" title="连接池"></a>连接池</h1><h2 id="连接池原理："><a href="#连接池原理：" class="headerlink" title="连接池原理："></a>连接池原理：</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据库创建连接需要消耗较多的资源,使用数据库连接池存放链接,用后不用关闭资源(连接)而是放到连接池中,再用时直接从中取出,不用创建新连接，以便提高性能<h2 id="编写标准的数据源"><a href="#编写标准的数据源" class="headerlink" title="编写标准的数据源"></a>编写标准的数据源</h2></li>
+<li>实现javax.sql.DataSource接口</li>
+<li>使用LinkedList<connection>存放链接对象…<h2 id="装饰设计模式-使用频率很高"><a href="#装饰设计模式-使用频率很高" class="headerlink" title="装饰设计模式:使用频率很高"></a>装饰设计模式:使用频率很高</h2></connection></li>
+<li>改写已存在的类的某个方法或某些方法，装饰设计模式（包装模式）</li>
+<li>口诀:<br>1、编写一个类，<strong>实现与被包装类相同的接口</strong>。（具备相同的行为）<br>2、定义一个被包装类类型的变量。<br>3、定义构造方法，把被包装类的对象注入，给被包装类变量赋值。<br>4、对于不需要改写的方法，调用原有的方法。<br>5、对于需要改写的方法，写自己的代码。<h2 id="适配器模式-装饰设计模式一个变体"><a href="#适配器模式-装饰设计模式一个变体" class="headerlink" title="适配器模式:装饰设计模式一个变体"></a>适配器模式:装饰设计模式一个变体</h2></li>
+<li>1、编写一个类，<strong>继承包装类适配器</strong>。（具备相同的行为）<br>2、定义一个被包装类类型的变量。<br>3、定义构造方法，把被包装类的对象注入，给被包装类变量赋值。<br>4、对于不需要改写的方法，调用原有的方法。<br>5、对于需要改写的方法，写自己的代码。<h2 id="常用的第三方数据源及其配置（日后都使用数据源，一定要配置一下）"><a href="#常用的第三方数据源及其配置（日后都使用数据源，一定要配置一下）" class="headerlink" title="常用的第三方数据源及其配置（日后都使用数据源，一定要配置一下）"></a>常用的第三方数据源及其配置（日后都使用数据源，一定要配置一下）</h2><h3 id="DBCP–Apache推出的Database-Connection-Pool-没有自动回收空闲连接的功能"><a href="#DBCP–Apache推出的Database-Connection-Pool-没有自动回收空闲连接的功能" class="headerlink" title="DBCP–Apache推出的Database Connection Pool(没有自动回收空闲连接的功能)"></a>DBCP–Apache推出的Database Connection Pool(没有自动回收空闲连接的功能)</h3></li>
+</ul>
+<p><per lang="java"><code><br>//加载资源<br>Properties p = new Properties();<br>p.load(DBCPUtils.class.getClassloader().getResourceAsStream(“dbcpconfig.properties”));//DBCPUtils为所在当前类<br>DataSource ds = BasicDataSourceFactory.createDataSource(p);<br>Connection conn = ds.getConnection();<br></code></per></p>
+<h3 id="C3P0–一个开源的JDBC连接池，它实现了数据源和JNDI-13a-绑定-有自动回收空闲连接功能"><a href="#C3P0–一个开源的JDBC连接池，它实现了数据源和JNDI-13a-绑定-有自动回收空闲连接功能" class="headerlink" title="C3P0–一个开源的JDBC连接池，它实现了数据源和JNDI[^13a]绑定(有自动回收空闲连接功能)"></a>C3P0–一个开源的JDBC连接池，它实现了数据源和JNDI[^13a]绑定(有自动回收空闲连接功能)</h3><ul>
+<li>c3p0-config.xml配置文件classpath或classes中(会自动读取信息?)<h3 id="Druid–阿里巴巴"><a href="#Druid–阿里巴巴" class="headerlink" title="Druid–阿里巴巴"></a>Druid–阿里巴巴</h3><h2 id="用JavaWeb服务器管理数据源：Tomcat"><a href="#用JavaWeb服务器管理数据源：Tomcat" class="headerlink" title="用JavaWeb服务器管理数据源：Tomcat"></a>用JavaWeb服务器管理数据源：Tomcat</h2></li>
+<li>JNDI(java nameing directory interface)Java命名和目录接口,tomcat管理数据源时,多个数据源用目录形式存储于JNDI容器(Map)中,根据新颖的名字找打对应的数据源<h1 id="自定义JDBC框架"><a href="#自定义JDBC框架" class="headerlink" title="自定义JDBC框架"></a>自定义JDBC框架</h1><h2 id="数据库元信息的获取（很简单、很无聊、很重要）"><a href="#数据库元信息的获取（很简单、很无聊、很重要）" class="headerlink" title="数据库元信息的获取（很简单、很无聊、很重要）"></a>数据库元信息的获取（很简单、很无聊、很重要）</h2><h2 id="自定义JDBC框架-1"><a href="#自定义JDBC框架-1" class="headerlink" title="自定义JDBC框架"></a>自定义JDBC框架</h2></li>
+</ul>
+<p>解释:<br>JNDI(Java Naming and Directory Interface,Java命名和目录接口)是SUN公司提供的一种标准的Java命名系统接口，JNDI提供统一的客户端API，通过不同的访问提供者接口JNDI服务供应接口(SPI)的实现，由管理者将JNDI API映射为特定的命名服务和目录系统，使得Java应用程序可以和这些命名服务和目录服务之间进行交互</p>
+
+</div>
+
+
+      </div>
+      
+  	</div>
+
+    <!-- After footer scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  </body>
+</html>
