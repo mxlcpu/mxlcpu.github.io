@@ -93,8 +93,23 @@
 </div>
 <div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
   <blockquote>
-<p>网上好多教程会教你安装git，然而好多都是抄袭，所以都是千篇一律，错误的地方都错了，或者该说明的地方都不说明为什么那样配置，此文也是git安装，并且使用SSH连接，但是本文会在一些关键模糊不清别人说不清的地方加以详细解释。<br>1.安装git<br>推荐非绿色版，因为安装过程中需要设置环境变量，当然如果你会手动设置环境变量，那么也可以使用绿色版。</p>
+<p><strong>网上好多教程会教你安装git，然而好多都是抄袭，所以都是千篇一律，错误的地方都错了，或者该说明的地方都不说明为什么那样配置，此文也是git安装，并且使用SSH连接，但是本文会在一些关键模糊，别人说不清的地方加以详细解释。</strong></p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤:"></a>操作步骤:</h2><h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>推荐非绿色版，因为安装过程中需要设置环境变量，当然如果你会手动设置环境变量，那么也可以使用绿色版。安装包请前往<a href="https://git-scm.com/downloads" target="_blank" rel="external">官网</a>下载.安装过程中除了安装位置，其他选项推荐默认选项。</p>
+<h3 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h3><h4 id="配置全局信息"><a href="#配置全局信息" class="headerlink" title="配置全局信息"></a>配置全局信息</h4><p>1.配置用户名<br><code>git config –global user.name “yourname”</code><br>用户名是提交至git仓库时所显示的你的名字<br>2.配置电子邮件<br><code>git config –global user.email “example@email.com”</code><br>电子邮件是提交代码之仓库所展示的电子邮件<br>以上配置成功后会在用户目录下生成一个“.gitconfig”文件，里面记录了名字和电邮</p>
+<h3 id="使用SSH"><a href="#使用SSH" class="headerlink" title="使用SSH"></a>使用SSH</h3><p>将git使用SSH连接至代码托管平台，此文以GitHub为例</p>
+<h4 id="检查当前是否存在SSH密钥"><a href="#检查当前是否存在SSH密钥" class="headerlink" title="检查当前是否存在SSH密钥"></a>检查当前是否存在SSH密钥</h4><p>1.打开GitBash,进入到当前用户目录下<br><code>cd ~</code><br>2.测试当前位置是否已经有已经存在的SSH公钥和私钥<br><code>ls -al ~/.ssh</code><br>如列出的文件中有“id_dsa.pub“，”id_ecdsa.pub“，”id_ed25519.pub“，”id_rsa.pub”之类的文件说明已存在，将这些文件删除（确认这么些文件没有用）；<br>如没有，则可直接进行下一步操作。</p>
+<h4 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h4><p><code>ssh-keygen -t rsa -b 4096 -C “your_email@example.com”</code><br>此命令会将你的电子邮件作为标签生成相关的公钥私钥，生成的过程会首先提示“Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]”，意思是输入要保存密钥文件的地址，这里我们不输入任何直接回车表示默认位置，然后再回车会出现提示“Enter passphrase (empty for no passphrase): [Type a passphrase]”，这意思是让你输入一个密码短语以便加密你的私钥，一般为了简单我们不选择加密，直接回车，但是如果你实在想把私钥保护起来输入加密密码，那么git每次读取你的私钥首先要先解密，这就需要你输入密码短语。由此可见这样使用SSH并没有比http方式省很多事，所以我们就提到下面的内容来解决此问题。</p>
+<h5 id="ssh-agent的使用"><a href="#ssh-agent的使用" class="headerlink" title="ssh-agent的使用"></a>ssh-agent的使用</h5><p>如果你没有使用密码短语，那么这步可以跳过了，如果你使用了密码短语，又不想每次都输入密码短语，那么这步是你要阅读的。<br>ssh-agent是一个“密码保险箱”，将你的私钥保存到这个保险箱后，git进程会自动和ssh-agent通信获取密码。然而如果你使用的是绿色版的git,由于一些配置信息，git-agent不会自动启动，所以git这时候连接SSH会报错。另外，git-agent启动后是在内存开辟了一块空间用作高速缓存来保存密码，所以，git-agent进程如果结束后会是会丢失里面保存的私钥信息，也因为如此，git-agent每次启动后都会需要你添加私钥进去，那么下面我们进行操作吧：<br>1.启动ssh-agent<br>用绿色版git的可以先启动ssh-agent<br><code>eval $(ssh-agent -s)</code><br>如果是安装版的，ssh-agent应该会自动启动但是由于种种原因，没有启动的话，也可以这样操作。<br>2.将私钥添加至ssh-agent<br><code>ssh-add ~/.ssh/id_rsa</code><br>如果设置过密码短语，此时会提示让你输一次密码短语，以便ssh-agent能读取到你的私钥，然后保存在高速缓存里。<br>那么问题来了：拿到每次都要手动启动ssh-agent,这样太麻烦了，答案是否定的，下面的操作会让ssh-agent自动启动，自动加入密钥。<br>3.复制下面的内容粘贴到“~/.profile” 或者“ ~/.bashrc”，如果没有的话粘贴到git安装目录下的“ect/bash.bashrc”文件中。<br><code><br>env=~/.ssh/agent.env</code></p>
 </blockquote>
+<p>agent_load_env () { test -f “$env” &amp;&amp; . “$env” &gt;| /dev/null ; }</p>
+<p>agent_start () {<br>    (umask 077; ssh-agent &gt;| “$env”)<br>    . “$env” &gt;| /dev/null ; }</p>
+<p>agent_load_env</p>
+<h1 id="agent-run-state-0-agent-running-w-key-1-agent-w-o-key-2-agent-not-running"><a href="#agent-run-state-0-agent-running-w-key-1-agent-w-o-key-2-agent-not-running" class="headerlink" title="agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running"></a>agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running</h1><p>agent_run_state=$(ssh-add -l &gt;| /dev/null 2&gt;&1; echo $?)</p>
+<p>if [ ! “$SSH_AUTH_SOCK” ] || [ $agent_run_state = 2 ]; then<br>    agent_start<br>    ssh-add<br>elif [ “$SSH_AUTH_SOCK” ] &amp;&amp; [ $agent_run_state = 1 ]; then<br>    ssh-add<br>fi</p>
+<p>unset env<br><br>这样就自动启动ssh-agent，添加私钥操作。</p>
+<h3 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h3><p>密钥文件生成后，下面就配置到GitHub中<br>1.Bash下复制公钥文件的内容到剪切板：<br><code>clip &lt; ~/.ssh/id_rsa.pub</code><br>2.登陆giithub,打开“Settings—SSH and GPG keys—New SSH key—”，在名称里随便填，”Key”里粘贴公钥，然后点击“Add SSH key”保存，可以看到一组指纹。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>1.打开gitBash,输入<br><code>ssh -T git@github.com</code><br>回车后可能会看到提示“Are you sure you want to continue connecting (yes/no)?”，这是让你确认指纹和上文中提到的是否一致，然后键入“yes”回车，后悔提示“Hi username! You’ve successfully authenticated, but GitHub does not<br>provide shell access.”</p>
+<h3><br><strong>&gt;好了，到此为止，你便为git成功配置了SSH连接方式，enjoy it!</strong><br></h3>
 
 </div>
 
