@@ -124,7 +124,7 @@ unset env
 <p>这样就自动启动ssh-agent，添加私钥操作。</p>
 <h3 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h3><p>密钥文件生成后，下面就配置到GitHub中<br>1.Bash下复制公钥文件的内容到剪切板：<br><code>clip &lt; ~/.ssh/id_rsa.pub</code><br>2.登陆giithub,打开“Settings—SSH and GPG keys—New SSH key”，在名称栏里随便填，”Key”里粘贴公钥，然后点击“Add SSH key”保存，可以看到一组指纹。</p>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>1.打开gitBash,输入<br><code>ssh -T git@github.com</code><br>回车后可能会看到提示“Are you sure you want to continue connecting (yes/no)?”，这是让你确认指纹和上文中提到的是否一致，然后键入“yes”回车，然后提示“Hi username! You’ve successfully authenticated, but GitHub does not<br>provide shell access.”</p>
-<h3><br><strong>好了，到此为止，你便为git成功配置了SSH连接方式，enjoy it!</strong><br></h3>
+<h3><br><h5><br>提示：初始化项目后中有个/.git/config文件，如要使用SSH,请确保该文件中配置的是SSH地址而不是https<br></h5><br><strong>好了，到此为止，你便为git成功配置了SSH连接方式，enjoy it!</strong><br></h3>
 
 </div>
 
