@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head tag -->
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  
+  <title>docker入门 - 北国风神</title>
+
+  <!--Favicon-->
+  <link rel="icon" href="favicon/favicon.ico">
+
+  <!--Description-->
+  
+      <meta name="description" content="分享技术,分享生活">
+  
+
+  <!--Author-->
+  
+      <meta name="author" content="MengHsiaolei">
+  
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans:300,800" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-108380190-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+</head>
+
+
+  <body>
+  	<div class="container-fluid navbar-container m-sm-5">
+      <!-- Header -->
+      <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
+  <a class="navbar-brand ml-2" href="/">北国风神</a>
+  <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto my-auto">
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/about">关于</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="http://weibo.com/945671858">微博</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.facebook.com/mxlcpu">脸书</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/cpumxlcpu">推特</a>
+        </li>
+      
+    </ul>
+    <hr class="hidden-md-up" />
+  </div>
+</nav>
+
+
+  		<div class="row">
+  			<div class="col-12 mb-4">
+  <img class="img-fluid project-img" src="/images/5.jpg" alt="docker入门">
+</div>
+<div class="col-lg-4 col-12 pt-3 px-4 pr-lg-5">
+  <h1>docker入门</h1>
+</div>
+<div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
+  <p>本文在windows10下使用docker for windows为例说明docker的用法</p>
+<h1 id="docker是什么"><a href="#docker是什么" class="headerlink" title="docker是什么?"></a>docker是什么?</h1><p>docker其实就是一个变相的虚拟机(容器)。他可以虚拟出一个Linux环境。</p>
+<h1 id="为什么要用docker"><a href="#为什么要用docker" class="headerlink" title="为什么要用docker?"></a>为什么要用docker?</h1><p>轻量级:基于 LXC 的轻量级的容器,而且 docker 能够只加载每个 container 变化的部分相比 KVM 之类最明显的特点就是启动快，资源占用小.<br>易于构建:使用Dockerfile 即使在复杂的环境也能几行命令搞定<br>节约成本:以前一个虚拟机至少需要几个 G 的磁盘空间，docker 容器可以减少到 MB 级；<br>除此之外还有其他很多优点,这需要你自己在实际应用中体会了</p>
+<h1 id="doocker基础入门"><a href="#doocker基础入门" class="headerlink" title="doocker基础入门"></a>doocker基础入门</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a><a href="https://www.docker.com/community-edition#/download" target="_blank" rel="external">下载</a></h3><p><a href="https://www.docker.com/community-edition#/download" target="_blank" rel="external">Docker</a>提供Linux(CentOS,Ubuntu,Fedora,Debian…),MacOS,Windows下使用,对于windows,win10以下的系统使用Docker Toolbox,win10下使用DOCKER CE FOR WINDOWS,本文使用的即是win10环境.</p>
+<h3 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h3><p>下载完后双击安装,就像普通软件那样安装即可,前提是开启Hype-V<br>安装完成后,dockerm默认会从dockerhub仓库中存取相关镜像,但是官方网站太慢,我们使用国内的<a href="http://cr.console.aliyun.com" target="_blank" rel="external">阿里巴巴提供的dockerhub镜像地址</a><br>进入后的控制台如下:<br><a href="https://i.loli.net/2017/10/26/59f1a526d10e8.png" target="_blank" rel="external">https://i.loli.net/2017/10/26/59f1a526d10e8.png</a><br>复制你的加速器地址,编辑器打开文件”C:\Users\username.docker\daemon.json”,将加速器地址粘贴到”{“registry-mirrors”:[“xxxx”],”insecure-registries”:[], “debug”:true, “experimental”: true}”中的xxxx处.</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>打开cmd键入</p>
+<pre><code>
+docker version
+</code></pre>
+
+<p>此为查看docker的版本号,显示,表示安装docker成功</p>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>使用docker的搜索功能在线仓库中搜索一个镜像,比如我们搜索”centos”</p>
+<pre><code>
+docker search centos
+</code></pre>
+
+<p>回车,会显示:</p>
+<pre><code>
+NAME                               DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+centos                             The official build of CentOS.                   3742                [OK]
+ansible/centos7-ansible            Ansible on Centos7                              102                                     [OK]
+jdeathe/centos-ssh                 CentOS-6 6.9 x86_64 / CentOS-7 7.4.1708 x8...   88                                      [OK]
+tutum/centos                       Simple CentOS docker image with SSH access      33
+imagine10255/centos6-lnmp-php56    centos6-lnmp-php56                              31                                      [OK]
+...
+</code></pre>
+
+<h3 id="安装镜像"><a href="#安装镜像" class="headerlink" title="安装镜像"></a>安装镜像</h3><p>name字段为镜像的名字,好了我们就安装官方的那个centos:</p>
+<pre><code>
+docker pull centos
+</code></pre>
+
+<p>等待安装完成.</p>
+<h3 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h3><pre><code>
+docker run -it centos bash
+</code></pre>
+
+<p>run命令后-it表示前台运行,运行后其实在容器中运行的,会自动产生一个容器,bash表示要在镜像中执行的命令,即使用bash命令行.</p>
+<h3 id="操作镜像"><a href="#操作镜像" class="headerlink" title="操作镜像"></a>操作镜像</h3><p>centos在容器中运行起来了,但这个centos太纯净了,纯净到连一些基本的组件都没有,比如ssh,下面我们来安装一些组件:</p>
+<pre><code>
+yum install passwd openssl openssh-server -y
+</code></pre>
+
+<p>安装了passwd openssl openssh-server这三个,<br>生成公钥和密钥:</p>
+<pre><code>
+ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N ''
+ssh-keygen -q -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''
+ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key  -N ''
+</code></pre>
+
+<p>用vim编辑器(需要自己安装或用vi)编辑/etc/ssh/sshd_config文件:<br>UsePAM yes 改为 UsePAM no<br>UsePrivilegeSeparation sandbox 前面的注释标识去掉并把sandbox改为no,退出保存<br>centos这个镜像登录后用户默认为root,那么为root用户设置密码:</p>
+<pre><code>
+passwd root
+</code></pre>
+
+<p>设置密码后.我们还需要安装一个工具net-tools:</p>
+<pre><code>
+yum install net-tools -y 
+</code></pre>
+
+<p>然后用ip工具查看一下本地网络启用没有:</p>
+<pre><code>
+ip addr ls eth0
+</code></pre>
+
+<p>退出镜像的bash</p>
+<pre><code>
+Ctrl+P+Q
+</code></pre>
+
+<h3 id="保存镜像"><a href="#保存镜像" class="headerlink" title="保存镜像"></a>保存镜像</h3><p>然后将我们操作过的镜像保存为一个新的镜像:<br>先看看一下容器信息:</p>
+<pre><code>
+docker ps -a
+</code></pre>
+
+<p>然后保存镜像</p>
+<pre><code>
+docker commit 容器id 用户名/镜像名:标签名
+</code></pre>
+
+<p>停止运行docker容器</p>
+<pre><code>
+docker stop 容器ID
+</code></pre>
+
+<p>运行容器并把容器中的22端口映射到宿主机的2222:</p>
+<pre><code>
+docker run -d -p 2222:22 用户名/镜像名:标签名 /usr/sbin/sshd -D
+</code></pre>
+
+<p>-d表示后台运行,-p表示要绑定的端口,并启动ssh服务器</p>
+
+</div>
+
+
+      </div>
+      
+  	</div>
+
+    <!-- After footer scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  </body>
+</html>
