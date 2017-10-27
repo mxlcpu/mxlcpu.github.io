@@ -92,7 +92,11 @@
   <h1>docker入门</h1>
 </div>
 <div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
-  <p>本文在windows10下使用docker for windows为例说明docker的用法</p>
+  <p>请欣赏音乐:</p>
+<audio loop autoplay src="audio/Shine-InfiniteMusic.mp3"><br>您的浏览器不支持笨音乐!<br></audio>
+
+
+<p><strong>本文在windows10下使用docker for windows为例说明docker的用法</strong></p>
 <h1 id="docker是什么"><a href="#docker是什么" class="headerlink" title="docker是什么?"></a>docker是什么?</h1><p>docker其实就是一个变相的虚拟机(容器)。他可以虚拟出一个Linux环境。</p>
 <h1 id="为什么要用docker"><a href="#为什么要用docker" class="headerlink" title="为什么要用docker?"></a>为什么要用docker?</h1><p>轻量级:基于 LXC 的轻量级的容器,而且 docker 能够只加载每个 container 变化的部分相比 KVM 之类最明显的特点就是启动快，资源占用小.<br>易于构建:使用Dockerfile 即使在复杂的环境也能几行命令搞定<br>节约成本:以前一个虚拟机至少需要几个 G 的磁盘空间，docker 容器可以减少到 MB 级；<br>除此之外还有其他很多优点,这需要你自己在实际应用中体会了</p>
 <h1 id="doocker基础入门"><a href="#doocker基础入门" class="headerlink" title="doocker基础入门"></a>doocker基础入门</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a><a href="https://www.docker.com/community-edition#/download" target="_blank" rel="external">下载</a></h3><p><a href="https://www.docker.com/community-edition#/download" target="_blank" rel="external">Docker</a>提供Linux(CentOS,Ubuntu,Fedora,Debian…),MacOS,Windows下使用,对于windows,win10以下的系统使用Docker Toolbox,win10下使用DOCKER CE FOR WINDOWS,本文使用的即是win10环境.</p>
@@ -183,7 +187,26 @@ docker run -d -p 2222:22 用户名/镜像名:标签名 /usr/sbin/sshd -D
 </code></pre>
 
 <p>-d表示后台运行,-p表示要绑定的端口,并启动ssh服务器</p>
+<p>如果有多个端口需要映射,解决方法之一就是:</p>
+<pre><code>
+docker run -it -p 2222:22 -p 8888:88 镜像名 bash
+</code></pre>
 
+<p>进入容器环境之后再启动对应的监听端口额程序<br>删除容器:</p>
+<pre><code>
+docker rm 容器ID [-f]
+</code></pre>
+
+<p>删除镜像:</p>
+<pre><code>
+docker rmi 镜像ID [-f]
+</code></pre>
+
+<h3 id="dockerfile"><a href="#dockerfile" class="headerlink" title="dockerfile"></a>dockerfile</h3><p>docker之所以更为简洁高效,dockerfile便是缘由之一,dockerfile 用来创建一个自定义的 image, 包含了用户指定的软件依赖等。当前目录下包含 Dockerfile, 使用命令 build 来创建新的 image.</p>
+<p>构建:进入含有dockerfile目录中</p>
+<pre><code>
+docker build -t "为新生成的镜像指定一个名字" "dockerfile名字" .
+</code></pre>
 </div>
 
 
