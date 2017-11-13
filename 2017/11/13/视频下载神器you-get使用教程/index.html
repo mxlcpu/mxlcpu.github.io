@@ -92,62 +92,68 @@
   <h1>视频下载神器you-get使用教程</h1>
 </div>
 <div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
-  <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://you-get.org/" target="_blank" rel="external">you-get</a>是一个极其好用的网页视频下载神器,支持几乎所有的你所见到的视频网站(当然也支持音频和图片的下载,但我们最常用来的是下载视频).这个工具完全使用命令行来操作,排斥者慎用.you-get使用<a href="https://www.python.org/" target="_blank" rel="external">python</a>开发而成,要想使用必须先安装<a href="https://www.python.org/" target="_blank" rel="external">python</a>,python安装好后,使用其自带的包管理器pip3下载安装you-get.由于网页视频视频是有一小段一小段组成的,所以下载下来的视频需要合并成完整的一个视频,这就需要用到另外一个开源影音编解码工具<a href="http://ffmpeg.zeranoe.com/builds/" target="_blank" rel="external">ffmpeg</a>(如果用绿色版需要配置到系统环境变量里).</p>
+  <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://you-get.org/" target="_blank" rel="external">you-get</a>是一个极其好用的网页视频下载神器,支持几乎所有的你所见到的视频网站(当然也支持音频和图片的下载,但我们最常用来的是下载视频).这个工具完全使用命令行来操作,排斥者慎用.you-get使用<a href="https://www.python.org/" target="_blank" rel="external">python</a>开发而成,要想使用必须先<a href="https://www.python.org/" target="_blank" rel="external">安装python</a>,python安装好后,使用其自带的包管理器pip3下载安装you-get.由于网页视频是有一小段一小段组成的,所以下载下来的视频需要合并成完整的一个视频,这就需要用到另外一个开源影音编解码工具<a href="http://ffmpeg.zeranoe.com/builds/" target="_blank" rel="external">ffmpeg</a>(如果用绿色版需要配置到系统环境变量里).</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>打开命令行,键入<code>pip3 install you-get</code>一会就安装好了</p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="下载视频"><a href="#下载视频" class="headerlink" title="下载视频"></a>下载视频</h2><p>以优酷上功守道为例:<br>键入<code>you-get -i &quot;http://v.youku.com/v_show/id_XMzE0ODM1ODg1Ng==.html?spm=a2hww.20027244.m_250379.5~1~3~A&quot;</code></p>
-<p><pre><code><br>site:                优酷 (Youku)<br>title:               功守道<br>streams:             # Available quality and codecs<br>    [ DEFAULT ] <strong><strong><strong><strong><strong><strong><strong><strong>_</strong></strong></strong></strong></strong></strong></strong></strong></code></pre></p>
-<pre><code>- format:        mp4hd3
-  container:     mp4
-  video-profile: 1080P
-  size:          298.5 MiB (312992360 bytes)
-  m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&amp;type=hd3&amp;ups_client_netip=223.72.86.112&amp;ups_ts=1510582707&amp;utid=r5eQEiwfozACAd9IVnCmj5aQ&amp;ccode=0401&amp;psid=6486cba4a1c8d52d6302082fb3171e3f&amp;duration=1362&amp;expire=18000&amp;ups_key=c8df1682b212194e177de6e9513a5730
-# download-with: you-get --format=mp4hd3 [URL]
+<pre><code>
+site:                优酷 (Youku)
+title:               功守道
+streams:             # Available quality and codecs
+    [ DEFAULT ] _________________________________
+    - format:        mp4hd3
+      container:     mp4
+      video-profile: 1080P
+      size:          298.5 MiB (312992360 bytes)
+      m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&type=hd3&ups_client_netip=223.72.86.112&ups_ts=1510582707&utid=r5eQEiwfozACAd9IVnCmj5aQ&ccode=0401&psid=6486cba4a1c8d52d6302082fb3171e3f&duration=1362&expire=18000&ups_key=c8df1682b212194e177de6e9513a5730
+    # download-with: you-get --format=mp4hd3 [URL]
 
-- format:        mp4hd3v2
-  container:     mp4
-  video-profile: 1080P
-  size:          297.9 MiB (312415230 bytes)
-  m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&amp;type=hd3&amp;ups_client_netip=223.72.86.112&amp;ups_ts=1510582707&amp;utid=r5eQEiwfozACAd9IVnCmj5aQ&amp;ccode=0401&amp;psid=6486cba4a1c8d52d6302082fb3171e3f&amp;duration=1362&amp;expire=18000&amp;ups_key=c8df1682b212194e177de6e9513a5730
-# download-with: you-get --format=mp4hd3v2 [URL]
+    - format:        mp4hd3v2
+      container:     mp4
+      video-profile: 1080P
+      size:          297.9 MiB (312415230 bytes)
+      m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&type=hd3&ups_client_netip=223.72.86.112&ups_ts=1510582707&utid=r5eQEiwfozACAd9IVnCmj5aQ&ccode=0401&psid=6486cba4a1c8d52d6302082fb3171e3f&duration=1362&expire=18000&ups_key=c8df1682b212194e177de6e9513a5730
+    # download-with: you-get --format=mp4hd3v2 [URL]
 
-- format:        mp4hd2
-  container:     mp4
-  video-profile: 超清
-  size:          167.5 MiB (175599142 bytes)
-  m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&amp;type=hd2&amp;ups_client_netip=223.72.86.112&amp;ups_ts=1510582707&amp;utid=r5eQEiwfozACAd9IVnCmj5aQ&amp;ccode=0401&amp;psid=6486cba4a1c8d52d6302082fb3171e3f&amp;duration=1362&amp;expire=18000&amp;ups_key=c8df1682b212194e177de6e9513a5730
-# download-with: you-get --format=mp4hd2 [URL]
+    - format:        mp4hd2
+      container:     mp4
+      video-profile: 超清
+      size:          167.5 MiB (175599142 bytes)
+      m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&type=hd2&ups_client_netip=223.72.86.112&ups_ts=1510582707&utid=r5eQEiwfozACAd9IVnCmj5aQ&ccode=0401&psid=6486cba4a1c8d52d6302082fb3171e3f&duration=1362&expire=18000&ups_key=c8df1682b212194e177de6e9513a5730
+    # download-with: you-get --format=mp4hd2 [URL]
 
-- format:        mp4hd2v2
-  container:     mp4
-  video-profile: 超清
-  size:          166.9 MiB (175007509 bytes)
-  m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&amp;type=hd2&amp;ups_client_netip=223.72.86.112&amp;ups_ts=1510582707&amp;utid=r5eQEiwfozACAd9IVnCmj5aQ&amp;ccode=0401&amp;psid=6486cba4a1c8d52d6302082fb3171e3f&amp;duration=1362&amp;expire=18000&amp;ups_key=c8df1682b212194e177de6e9513a5730
-# download-with: you-get --format=mp4hd2v2 [URL]
+    - format:        mp4hd2v2
+      container:     mp4
+      video-profile: 超清
+      size:          166.9 MiB (175007509 bytes)
+      m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&type=hd2&ups_client_netip=223.72.86.112&ups_ts=1510582707&utid=r5eQEiwfozACAd9IVnCmj5aQ&ccode=0401&psid=6486cba4a1c8d52d6302082fb3171e3f&duration=1362&expire=18000&ups_key=c8df1682b212194e177de6e9513a5730
+    # download-with: you-get --format=mp4hd2v2 [URL]
 
-- format:        flvhd
-  container:     flv
-  video-profile: 高清
-  size:          57.0 MiB (59794363 bytes)
-  m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&amp;type=flv&amp;ups_client_netip=223.72.86.112&amp;ups_ts=1510582707&amp;utid=r5eQEiwfozACAd9IVnCmj5aQ&amp;ccode=0401&amp;psid=6486cba4a1c8d52d6302082fb3171e3f&amp;duration=1362&amp;expire=18000&amp;ups_key=c8df1682b212194e177de6e9513a5730
-# download-with: you-get --format=flvhd [URL]
+    - format:        flvhd
+      container:     flv
+      video-profile: 高清
+      size:          57.0 MiB (59794363 bytes)
+      m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&type=flv&ups_client_netip=223.72.86.112&ups_ts=1510582707&utid=r5eQEiwfozACAd9IVnCmj5aQ&ccode=0401&psid=6486cba4a1c8d52d6302082fb3171e3f&duration=1362&expire=18000&ups_key=c8df1682b212194e177de6e9513a5730
+    # download-with: you-get --format=flvhd [URL]
 
-- format:        mp4hd
-  container:     mp4
-  video-profile: 高清
-  size:          104.7 MiB (109793046 bytes)
-  m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&amp;type=mp4&amp;ups_client_netip=223.72.86.112&amp;ups_ts=1510582707&amp;utid=r5eQEiwfozACAd9IVnCmj5aQ&amp;ccode=0401&amp;psid=6486cba4a1c8d52d6302082fb3171e3f&amp;duration=1362&amp;expire=18000&amp;ups_key=c8df1682b212194e177de6e9513a5730
-# download-with: you-get --format=mp4hd [URL]
+    - format:        mp4hd
+      container:     mp4
+      video-profile: 高清
+      size:          104.7 MiB (109793046 bytes)
+      m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&type=mp4&ups_client_netip=223.72.86.112&ups_ts=1510582707&utid=r5eQEiwfozACAd9IVnCmj5aQ&ccode=0401&psid=6486cba4a1c8d52d6302082fb3171e3f&duration=1362&expire=18000&ups_key=c8df1682b212194e177de6e9513a5730
+    # download-with: you-get --format=mp4hd [URL]
 
-- format:        mp4sd
-  container:     mp4
-  video-profile: 标清
-  size:          57.4 MiB (60208084 bytes)
-  m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&amp;type=flv&amp;ups_client_netip=223.72.86.112&amp;ups_ts=1510582707&amp;utid=r5eQEiwfozACAd9IVnCmj5aQ&amp;ccode=0401&amp;psid=6486cba4a1c8d52d6302082fb3171e3f&amp;duration=1362&amp;expire=18000&amp;ups_key=c8df1682b212194e177de6e9513a5730
-# download-with: you-get --format=mp4sd [URL]
-</code></pre><p>audio-languages:</p>
-<pre><code>- lang:          国语
-  download-url:  http://v.youku.com/v_show/id_XMzE0ODM1ODg1Ng==
-</code></pre><p><br>会列出不同清晰度的视频信息,比如我们要下载mp4高清格式的,键入<code>you-get -o F:\ --format=mp4hd3 &quot;http://v.youku.com/v_show/id_XMzE0ODM1ODg1Ng==.html?spm=a2hww.20027244.m_250379.5~1~3~A&quot;</code>然后会出现:<br><img src="https://i.loli.net/2017/11/13/5a09aca4a4cb3.png" alt=""><br>解释:-o表示下载路径 –format表示要下载的格式,如果需要设置代理,可以用-x [代理地址]例如:<code>-x 127.0.0.1:1080</code>,简单入门就这些,如果需要学习更高级的命令请参考下面:</p>
+    - format:        mp4sd
+      container:     mp4
+      video-profile: 标清
+      size:          57.4 MiB (60208084 bytes)
+      m3u8_url:      http://pl-ali.youku.com/playlist/m3u8?vid=XMzE0ODM1ODg1Ng%3D%3D&type=flv&ups_client_netip=223.72.86.112&ups_ts=1510582707&utid=r5eQEiwfozACAd9IVnCmj5aQ&ccode=0401&psid=6486cba4a1c8d52d6302082fb3171e3f&duration=1362&expire=18000&ups_key=c8df1682b212194e177de6e9513a5730
+    # download-with: you-get --format=mp4sd [URL]
+audio-languages:
+    - lang:          国语
+      download-url:  http://v.youku.com/v_show/id_XMzE0ODM1ODg1Ng==
+</code></pre>
+
+<p>会列出不同清晰度的视频信息,比如我们要下载mp4高清格式的,键入<code>you-get -o F:\ --format=mp4hd3 &quot;http://v.youku.com/v_show/id_XMzE0ODM1ODg1Ng==.html?spm=a2hww.20027244.m_250379.5~1~3~A&quot;</code>然后会出现:<br><img src="https://i.loli.net/2017/11/13/5a09aca4a4cb3.png" alt=""><br>解释:-o表示下载路径 –format表示要下载的格式,如果需要设置代理,可以用-x [代理地址]例如:<code>-x 127.0.0.1:1080</code>,简单入门就这些,如果需要学习更高级的命令请参考下面:</p>
 <p><pre><code><br>usage: you-get [OPTION]… URL…</code></pre></p>
 <p>A tiny downloader that scrapes the web</p>
 <p>optional arguments:<br>  -V, –version         Print version and exit<br>  -h, –help            Print this help message and exit</p>
