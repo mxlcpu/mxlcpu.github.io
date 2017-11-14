@@ -1,0 +1,159 @@
+
+<link href="//cdn.bootcss.com/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<link rel="stylesheet" type="text/css" href="/css/video.css">
+
+
+<div class="container--grid home-container" style="min-height: auto;">
+        <div class="container container--header">
+            <h1 class="h1--home-title"><font color="#D9D919">VIP</font>电影免费看</h1>
+			<!--
+			<div class="collapse navbar-collapse text-center">
+				<h3 class="" >返回首页</h3>
+			</div>
+			-->
+            <p>将视频链接地址拷贝至下方搜索输入框, 回车即可免费观看 VIP 电影</p>
+        </div>
+
+        <div class="search-wrapper">
+            <form>
+                <input type="text" id="videoSearchInput" />
+                <div class="after"></div>
+                <input type="submit" />
+            </form>
+            <h4>&nbsp;</h4>
+            <p>点击放大镜, 输入视频的网页播放地址, 例如爱奇艺上的<战狼2>网页播放地址:http://www.iqiyi.com/v_19rre19on4.html, 回车观看</p>
+        </div>
+        <div class="video-wrapper">
+            <iframe width="" height="" id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="support-videos">
+            <p>现已支持以下网站视频播放(包含VIP电影)</p>
+            <ul layout="rows" id="MixItUp25A03F">
+				<li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.le.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbvmfdj20460140ss.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://v.qq.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbvgqdj204601ejrk.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.iqiyi.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbqw0lj2032012dfm.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.youku.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzc59c3j20580113zs.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.tudou.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbvn5qj204601ewel.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.mgtv.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbrsltj204601eglq.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://tv.sohu.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbwhouj204601e0t3.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.youku.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzc59c3j20580113zs.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.acfun.tv/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbpd2pj202g00r0nl.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.bilibili.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbq8jzj203d019t8k.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.fun.tv/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffec4rpovsg204601ka9v.gif">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.wasu.cn/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbxmvtj204601et8p.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.56.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbq4r7j204601e3yf.jpg">
+                    </a>
+                </li>
+                <li class="mix" style="display: inline-block;" data-bound="">
+                    <a href="http://www.yinyuetai.com/" target="_blank">
+                        <img src="https://ws1.sinaimg.cn/large/906cb9dbly1ffebzbqoa3j206o01e3yh.jpg">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/mixitup/2.1.11/jquery.mixitup.min.js"></script>
+<script >
+var getUrlParam = function(name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(decodeURI(window.location.href));
+    return results && results[1] || 0;
+};
+var videoUrl = getUrlParam('url');
+if (!videoUrl) {
+    videoUrl = 'http://www.iqiyi.com/v_19rra68crs.html';
+}
+$("#videoIframe").attr('src', 'https://api.47ks.com/webcloud/?v=' + videoUrl);
+
+(function() {
+    var s = $('input'),
+        f = $('form'),
+        a = $('.after'),
+        m = $('h4');
+    s.focus(function(){
+        if( f.hasClass('open') ) return;
+        f.addClass('in');
+        setTimeout(function(){
+            f.addClass('open');
+            f.removeClass('in');
+        }, 1300);
+    });
+    a.on('click', function(e){
+        e.preventDefault();
+        if( !f.hasClass('open') ) return;
+        s.val('');
+        f.addClass('close');
+        f.removeClass('open');
+        setTimeout(function(){
+            f.removeClass('close');
+        }, 1300);
+    })
+    f.submit(function(e){
+        e.preventDefault();
+        m.html('正在解析,请耐心等待...').addClass('show');
+        f.addClass('explode');
+        setTimeout(function(){
+            var videoUrl = s.val();
+            $("#videoIframe").attr('src', 'https://api.47ks.com/webcloud/?v=' + videoUrl);
+            history.pushState('', '', '?url=' + videoUrl);
+            s.val('');
+            f.removeClass('explode');
+            m.removeClass('show');
+        }, 3000);
+    })
+}());
+
+</script>
