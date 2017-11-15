@@ -14,9 +14,9 @@
             </font>
         </h1>
     </div>
-
+    
     <div class="search-wrapper">
-        <form>
+        <form>            
             <input type="text" id="videoSearchInput" />
             <div class="after"></div>
             <input type="submit" />
@@ -124,7 +124,7 @@
     if (!videoUrl) {
         videoUrl = 'http://www.iqiyi.com/v_19rre19on4.html';
     }
-    $("#videoIframe").attr('src', 'http://qtzr.net/s/?qt=' + videoUrl);
+    $("#videoIframe").attr('src', 'https://api.47ks.com/webcloud/?v=' + videoUrl);
 
     (function () {
         var s = $('input'),
@@ -155,7 +155,7 @@
             f.addClass('explode');
             setTimeout(function () {
                 var videoUrl = s.val();
-                $("#videoIframe").attr('src', 'http://qtzr.net/s/?qt=' + videoUrl);
+                $("#videoIframe").attr('src', 'https://api.47ks.com/webcloud/?v=' + videoUrl);
                 history.pushState('', '', '?url=' + videoUrl);
                 s.val('');
                 f.removeClass('explode');
