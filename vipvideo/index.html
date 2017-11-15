@@ -124,7 +124,7 @@
     if (!videoUrl) {
         videoUrl = 'http://www.iqiyi.com/v_19rre19on4.html';
     }
-    $("#videoIframe").attr('src', 'http://api.xfsub.com/index.php?url=' + videoUrl);
+    $("#videoIframe").attr('src', 'http://qtzr.net/s/?qt=' + videoUrl);
 
     (function () {
         var s = $('input'),
@@ -137,7 +137,7 @@
             setTimeout(function () {
                 f.addClass('open');
                 f.removeClass('in');
-            }, 1300);
+            }, 3000);
         });
         a.on('click', function (e) {
             e.preventDefault();
@@ -155,12 +155,12 @@
             f.addClass('explode');
             setTimeout(function () {
                 var videoUrl = s.val();
-                $("#videoIframe").attr('src', 'http://api.xfsub.com/index.php?url=' + videoUrl);
+                $("#videoIframe").attr('src', 'http://qtzr.net/s/?qt=' + videoUrl);
                 history.pushState('', '', '?url=' + videoUrl);
                 s.val('');
                 f.removeClass('explode');
                 m.removeClass('show');
-            }, 3000);
+            }, 5000);
         })
     }());
 
