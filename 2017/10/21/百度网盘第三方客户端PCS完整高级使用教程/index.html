@@ -48,7 +48,7 @@
     </script>
 
 
-</head>
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
   <body>
@@ -67,19 +67,15 @@
         </li>
       
         <li class="nav-item">
-          <a class="nav-link" href="/about">关于</a>
-        </li>
-      
-        <li class="nav-item">
           <a class="nav-link" href="http://weibo.com/945671858">微博</a>
         </li>
       
         <li class="nav-item">
-          <a class="nav-link" href="https://www.facebook.com/mxlcpu">脸书</a>
+          <a class="nav-link" href="https://twitter.com/cpumxlcpu">推特</a>
         </li>
       
         <li class="nav-item">
-          <a class="nav-link" href="https://twitter.com/cpumxlcpu">推特</a>
+          <a class="nav-link" href="/about">关于</a>
         </li>
       
     </ul>
@@ -140,9 +136,9 @@
 例：
     /data/data.txt 即是网盘绝对路径，表示网盘根目录下的data目录中的data.txt文件。
     data.txt 即是相对路径，表示当前工作目录下的data.txt文件。
-    当前工作目录可通过 &apos;pcs pwd&apos; 命令来查看，当前工作目录可通过 &apos;pcs cd&apos;命令切换。
-    可通过 &apos;pcs help&apos; 查看支持的子命令；可在子命令后加 &apos;-h&apos; 查看子命令帮助，
-    也可调用类似于 &apos;pcs help &lt;command&gt;&apos; 的命令来查看子命令的帮助。
+    当前工作目录可通过 &#39;pcs pwd&#39; 命令来查看，当前工作目录可通过 &#39;pcs cd&#39;命令切换。
+    可通过 &#39;pcs help&#39; 查看支持的子命令；可在子命令后加 &#39;-h&#39; 查看子命令帮助，
+    也可调用类似于 &#39;pcs help &lt;command&gt;&#39; 的命令来查看子命令的帮助。
     例如：
         pcs move -h。
         pcs help move 此命令等价于上一行的命令
@@ -163,7 +159,7 @@
 </code></pre><h3 id="比较异同"><a href="#比较异同" class="headerlink" title="比较异同"></a>比较异同</h3><pre><code>pcs compare [-cderu] &lt;local path&gt; &lt;remote path&gt;
 
 比较本地文件和远端文件、本地目录和远端目录的异同。
-默认选项是&apos;-cdu&apos;，即打印出需要上传的文件、
+默认选项是&#39;-cdu&#39;，即打印出需要上传的文件、
 需要下载的文件和无法确定上传下载的文件。
 
 比较规则：
@@ -193,7 +189,7 @@
 </code></pre><h3 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h3><pre><code>pcs download [-f] &lt;remote file&gt; &lt;local file&gt;
 pcs d [-f] &lt;remote file&gt; &lt;local file&gt;
 
-只能下载文件，如果需要下载目录，请使用 &apos;pcs synch -d &lt;local dir&gt; &lt;remote dir&gt;&apos;。
+只能下载文件，如果需要下载目录，请使用 &#39;pcs synch -d &lt;local dir&gt; &lt;remote dir&gt;&#39;。
 
 选项：
   -f   如果本地文件存在的话，强制替换
@@ -242,13 +238,13 @@ pcs ls [dir]
    pcs list -h
 
 列出目录时会自动分页显示，如果需要修改分页大小的话，
-使用&apos;pcs set --list_page_size=20&apos;来修改，把list_page_size设置为0，则关闭分页。
+使用&#39;pcs set --list_page_size=20&#39;来修改，把list_page_size设置为0，则关闭分页。
 </code></pre><h3 id="登录网盘"><a href="#登录网盘" class="headerlink" title="登录网盘"></a>登录网盘</h3><pre><code>pcs login [--username=&lt;username&gt;] [--password=&lt;password&gt;]
 
 登录可能需要输入验证码。目前的处理办法是把验证码图片写入到本地文件，用户打开文件识别验证码。
-可通过 &apos;pcs set --captcha_file=&lt;path&gt; 来指定验证码保存路径，
-例如：&apos;pcs set --captcha_file=/var/www/xxx.com/captch.gif&apos;将文件保存到网站目录下。
-可通过 &apos;pcs context&apos; 查看当前的执行上下文。执行上下文包括验证码图片保存路径等其他信息。
+可通过 &#39;pcs set --captcha_file=&lt;path&gt; 来指定验证码保存路径，
+例如：&#39;pcs set --captcha_file=/var/www/xxx.com/captch.gif&#39;将文件保存到网站目录下。
+可通过 &#39;pcs context&#39; 查看当前的执行上下文。执行上下文包括验证码图片保存路径等其他信息。
 
 示例：
   pcs login -h 可查看login命令的使用方法
@@ -292,7 +288,7 @@ pcs rm &lt;path&gt;
 </code></pre><h3 id="重命名网盘文件或目录"><a href="#重命名网盘文件或目录" class="headerlink" title="重命名网盘文件或目录"></a>重命名网盘文件或目录</h3><pre><code>pcs rename &lt;src&gt; &lt;new name&gt;
 pcs ren &lt;src&gt; &lt;new name&gt;
 
-注意：&lt;new name&gt;是新的文件名字，而不是文件路径。如果需要移动文件到另一个目录，请使用 &apos;pcs move&apos;。
+注意：&lt;new name&gt;是新的文件名字，而不是文件路径。如果需要移动文件到另一个目录，请使用 &#39;pcs move&#39;。
 
 示例：
   pcs rename /data.txt data_20140118.txt
@@ -309,8 +305,8 @@ pcs ren &lt;src&gt; &lt;new name&gt;
 --secure_method=[plaintext|aes-cbc-128|aes-cbc-192|aes-cbc-256] 设置加密方式
 --timeout_retry=[true|false]       设置执行synch和compare时，获取目录下文件超时时，是否允许重试
 --max_thread=&lt;num&gt;                 设置下载时允许的最大线程数
---max_speed_per_thread=&lt;num&gt;       设置单线程的最大下载速度。单位为KiB。详细查看&apos;pcs context&apos;命令中对上下文文件的说明
---max_upload_speed_per_thread=&lt;num&gt;设置单线程的最大上传速度。单位为KiB。详细查看&apos;pcs context&apos;命令中对上下文文件的说明
+--max_speed_per_thread=&lt;num&gt;       设置单线程的最大下载速度。单位为KiB。详细查看&#39;pcs context&#39;命令中对上下文文件的说明
+--max_upload_speed_per_thread=&lt;num&gt;设置单线程的最大上传速度。单位为KiB。详细查看&#39;pcs context&#39;命令中对上下文文件的说明
 --user_agent=&lt;user-agent&gt;          设置 User-Agent。
 
 示例：
@@ -330,9 +326,9 @@ pcs ren &lt;src&gt; &lt;new name&gt;
 pcs s [-cdenru] &lt;local path&gt; &lt;remote path&gt;
 
 同步本地文件和远端文件、本地目录和远端目录。
-默认选项是&apos;-cdu&apos;，即上传需要上传的文件、下载需要下载的文件和打印无法确定上传下载的文件。
+默认选项是&#39;-cdu&#39;，即上传需要上传的文件、下载需要下载的文件和打印无法确定上传下载的文件。
 
-比较规则：（同&apos;compare&apos;一样）
+比较规则：（同&#39;compare&#39;一样）
   只通过时间来进行比较。
   I)  如果本地和远端都是文件：
         a) 本地最后修改时间大于网盘文件上传时间，则认为需要上传；
@@ -350,7 +346,7 @@ pcs s [-cdenru] &lt;local path&gt; &lt;remote path&gt;
       一般是因为本地是文件，远端是目录，或本地是目录远端是文件
   -d  只下载需要下载的文件或目录
   -e  只打印相同的文件或目录
-  -n  只是打印，而不真正的执行上传和下载，等价于&apos;compare&apos;
+  -n  只是打印，而不真正的执行上传和下载，等价于&#39;compare&#39;
   -r  递归比较其子目录
   -u  只上传需要上传的文件或目录
 
@@ -361,11 +357,11 @@ pcs s [-cdenru] &lt;local path&gt; &lt;remote path&gt;
    pcs synch -d music music     只下载需要下载的文件，等价于还原
    pcs synch -du music music    上传需要上传的文件，并且下载需要下载的文件，等价于同步
 
-注意：推荐每次都带上&apos;-c&apos;选项，可以打印出不知道如何处理的文件或目录，防止漏上传或下载。
+注意：推荐每次都带上&#39;-c&#39;选项，可以打印出不知道如何处理的文件或目录，防止漏上传或下载。
 </code></pre><h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><pre><code>pcs upload [-f] &lt;local file&gt; &lt;remote file&gt;
 pcs u [-f] &lt;local file&gt; &lt;remote file&gt;
 
-只能上传文件，如果需要上传目录，请使用 &apos;pcs synch&apos; 命令。
+只能上传文件，如果需要上传目录，请使用 &#39;pcs synch&#39; 命令。
 
 示例：
    pcs upload ~/data.tar.gz /backup/data.20140118.tar.gz
