@@ -92,7 +92,7 @@
   <h1>java多线程同步机制嵌套使用产生异常的实验和分析</h1>
 </div>
 <div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
-  <h3 id="先看代码"><a href="#先看代码" class="headerlink" title="先看代码"></a>先看代码</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//这是多线程来,当启动两个线程A,B时,调用run()方法执行以下代码:</span>
+  <h3 id="先看代码"><a href="#先看代码" class="headerlink" title="先看代码"></a>先看代码</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//这是多线程类,当启动两个线程A,B时,调用run()方法执行以下代码:</span>
 ckage com<span class="token punctuation">.</span>mxlcpu<span class="token punctuation">.</span>clazz<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Random<span class="token punctuation">;</span>
@@ -133,7 +133,7 @@ if拿到clockB
 else拿到clockB
 if拿到clockA
 </code></pre>
-<h3 id="发现问题-分析问题"><a href="#发现问题-分析问题" class="headerlink" title="发现问题,分析问题"></a>发现问题,分析问题</h3><p>可以发现虽然是while无线循环,但是只执行了一小段,控制台别不输出了,处于卡死状态,为什么呢?<br>从控制台结果分析:<br>一个线程进入到if中,并且执行了其中的代码,此时另一个线程进入到else中,拿到了同步锁clockB,然而此时另一个线程抢到了CPU,进入到if语句,拿到锁clockA,然后就是一个线程要拿已经被对方拿走的同步锁,两个线程都在等待对方释放同步锁来拿走,便产生了抱死状态.<br>所以在实际开发中我们要避免这样的设计.</p>
+<h3 id="发现问题-分析问题"><a href="#发现问题-分析问题" class="headerlink" title="发现问题,分析问题"></a>发现问题,分析问题</h3><p>可以发现虽然是while无限循环,但是只执行了一小段,控制台别不输出了,处于卡死状态,为什么呢?<br>从控制台结果分析:<br>一个线程进入到if中,并且执行了其中的代码,此时另一个线程进入到else中,拿到了同步锁clockB,然而此时另一个线程抢到了CPU,进入到if语句,拿到锁clockA,然后就是一个线程要拿已经被对方拿走的同步锁,两个线程都在等待对方释放同步锁来拿走,便产生了抱死状态.<br>所以在实际开发中我们要避免这样的设计.</p>
 
 </div>
 
