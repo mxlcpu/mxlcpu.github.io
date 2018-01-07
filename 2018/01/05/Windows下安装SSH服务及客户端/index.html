@@ -96,7 +96,27 @@
   <h1>Windows下安装SSH服务及客户端</h1>
 </div>
 <div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
-  <p>有空再写</p>
+  <p><strong>本文是绿色版OpenSSH安装教程,如果嫌麻烦可以用<a href="http://www.mls-software.com/opensshd.html" target="_blank" rel="external">安装版</a></strong></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>微软官方提供了Windows下OpenSSH的支持以及<a href="https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/" target="_blank" rel="external">各种安装方法</a>,以及<a href="https://github.com/PowerShell/Win32-OpenSSH/releases" target="_blank" rel="external">Github</a>中的,另外也有第三方提供的版本.,本文使用github中的版本进行手动安装,<a href="https://github.com/PowerShell/Win32-OpenSSH/releases" target="_blank" rel="external">点击此处下载</a>.</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul>
+<li>将压缩包解压到指定文件夹中,目录中不要带中文和空格</li>
+<li>以管理员身份打开powershell,并进入到文件解压目录</li>
+<li>首先确保你的电脑中22端口未被占用 <code>netstat -anop TCP</code></li>
+<li>安装sshd和ssh-agent服务 `powershell -ExecutionPolicy Bypass -File install-sshd.ps1</li>
+<li>生成主机秘钥 <ul>
+<li><code>.\ssh-keygen.exe -A</code></li>
+<li><code>Powershell.exe -ExecutionPolicy Bypass -Command &quot;. .\FixHostFilePermissions.ps1 -Confirm:$false&quot;</code></li>
+</ul>
+</li>
+<li>在防火墙中添加规则允许sshd通过防火墙 <code>New-NetFirewallRule -Name sshd -DisplayName &#39;OpenSSH Server (sshd)&#39; -Service sshd -Enabled True -Direction Inbound -Protocol TCP -Action Allow</code></li>
+<li>设置sshd和ssh-agent自动启动 <ul>
+<li><code>Set-Service sshd -StartupType Automatic</code></li>
+<li><code>Set-Service ssh-agent -StartupType Automatic</code></li>
+</ul>
+</li>
+<li>开启sshd服务 <code>net start sshd</code><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1>在另一台同网段机器上,用ssh客户端执行登录操作: <code>ssh username@host</code>,回车键入密码,看是否登陆成功,sshd监听的端口默认是22,如果是自定义端口,则要用 <code>ssh -p2222 uasename@host</code>2222为自定义端口.<br>首次登录会提示无法确认host主机的真实性，只知道它的公钥指纹，问你还想继续连接吗？键入yes即可</li>
+</ul>
+<p><strong>至此已经安装完毕,如果要卸载,请执行以下命令: <code>powershell.exe -ExecutionPolicy Bypass -File uninstall-sshd.ps1</code></strong></p>
 
 </div>
 
