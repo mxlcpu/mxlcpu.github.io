@@ -97,7 +97,7 @@
 </div>
 <div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
   <blockquote>
-<p><strong>网上好多教程会教你安装git，然而好多都是抄袭，所以都是千篇一律，错误的地方都错了，或者该说明的地方都不说明为什么那样配置，此文也是git安装，并且使用SSH连接，但是本文会在一些关键模糊，别人说不清的地方加以详细解释。</strong></p>
+<p><strong>网上好多教程会教你安装git，然而好多都是抄袭，所以都是千篇一律，错误的地方都错了，或者该说明的地方都不说明为什么那样配置，此文也是git安装，并且使用SSH连接，但是本文会在一些关键模糊，别人说不清的地方加以详细解释。</strong><br><strong>SSH1（基于口令的安全验证），只要你知道自己的帐号和口令，就可以登录到远程主机，并且所有传输的数据都会被加密。但是，这种验证方式不能保证你正在连接的服务器就是你想连接的服务器。可能会有别的服务器在冒充真正的服务器，也就是受到”中间人”这种攻击方式的攻击。SSH2（基于密匙的安全验证），需要依靠密匙，也就是你必须为自己创建一对密匙，并把公有密匙放在需要访问的服务器上。如果你要连接到SSH服务器上，客户端软件就会向服务器发出请求，请求用你的密匙进行安全验证。服务器收到请求之后，先在你在该服务器的用户根目录下寻找你的公有密匙，然后把它和你发送过来的公有密匙进行比较。如果两个密匙一致，服务器就用公有密匙加密”质询”（challenge）并把它发送给客户端软件。客户端软件收到”质询”之后就可以用你的私人密匙解密再把它发送给服务器。本文基于SSH2做一个简单的安装使用说明</strong></p>
 <h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤:"></a>操作步骤:</h2><h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>推荐非绿色版，因为安装过程中需要设置环境变量，当然如果你会手动设置环境变量，那么也可以使用绿色版。安装包请前往<a href="https://git-scm.com/downloads" target="_blank" rel="external">官网</a>下载.安装过程中除了安装位置，其他选项推荐默认选项。</p>
 <h3 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h3><h4 id="配置全局信息"><a href="#配置全局信息" class="headerlink" title="配置全局信息"></a>配置全局信息</h4><p>1.配置用户名<br><code>git config –global user.name “yourname”</code><br>用户名是提交至git仓库时所显示的你的名字<br>2.配置电子邮件<br><code>git config –global user.email “example@email.com”</code><br>电子邮件是提交代码之仓库所展示的电子邮件<br>以上配置成功后会在用户目录下生成一个“.gitconfig”文件，里面记录了名字和电邮</p>
 <h3 id="使用SSH"><a href="#使用SSH" class="headerlink" title="使用SSH"></a>使用SSH</h3><p>将git使用SSH连接至代码托管平台，此文以GitHub为例</p>
