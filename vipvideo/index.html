@@ -22,7 +22,7 @@
             <input type="submit" />
         </form>
         <h4>&nbsp;</h4>
-        <p>说明:点击放大镜, 输入视频的网页地址, 例如爱奇艺上的战狼2网页地址:http://www.iqiyi.com/v_19rre19on4.html,然后回车观看</p>
+        <p>说明:点击放大镜,输入VIP视频网页地址,例如《狂暴巨兽》的网页地址:https://v.qq.com/x/cover/84cu4uxrkzi0e60.html,然后回车稍候即可观看</p>
     </div>
     <div class="video-wrapper">
         <iframe width="" height="" id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
@@ -108,7 +108,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:center">
             <div class="footer-copyright" style="text-align:center">
                 Copyright By
-                <a href="/">LeoMason</a>©2017 All Rights Reserved.
+                <a href="/">LeoMason</a>©2018 All Rights Reserved.
             </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
     };
     var videoUrl = getUrlParam('url');
     if (!videoUrl) {
-        videoUrl = 'http://www.iqiyi.com/v_19rre19on4.html';
+        videoUrl = 'https://v.qq.com/x/cover/84cu4uxrkzi0e60.html';
     }
     $("#videoIframe").attr('src', 'https://api.pangujiexi.com/player.php?url=' + videoUrl);
 
