@@ -124,7 +124,7 @@
     if (!videoUrl) {
         videoUrl = 'http://www.iqiyi.com/v_19rre19on4.html';
     }
-    $("#videoIframe").attr('src', 'http://yun.baiyug.cn/vip/?url=' + videoUrl);
+    $("#videoIframe").attr('src', 'https://api.pangujiexi.com/player.php?url=' + videoUrl);
 
     (function () {
         var s = $('input'),
@@ -155,7 +155,7 @@
             f.addClass('explode');
             setTimeout(function () {
                 var videoUrl = s.val();
-                $("#videoIframe").attr('src', 'http://yun.baiyug.cn/vip/?url=' + videoUrl);
+                $("#videoIframe").attr('src', 'https://api.pangujiexi.com/player.php?url=' + videoUrl);
                 history.pushState('', '', '?url=' + videoUrl);
                 s.val('');
                 f.removeClass('explode');
@@ -165,9 +165,10 @@
     }());
 
 </script>
-
+<!-- 
 <script>
     var xlm_wid='12206';
     var xlm_url='https://www.xianliao.me/';
-</script>
+ </script>
 <script type='text/javascript' charset='UTF-8' src='https://www.xianliao.me/embed.js'></script>
+-->
