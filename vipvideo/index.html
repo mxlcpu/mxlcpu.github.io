@@ -124,7 +124,7 @@
     if (!videoUrl) {
         videoUrl = 'https://v.qq.com/x/cover/84cu4uxrkzi0e60.html';
     }
-    $("#videoIframe").attr('src', 'https://api.pangujiexi.com/player.php?url=' + videoUrl);
+    $("#videoIframe").attr('src', 'http://http://app.baiyug.cn:2019/vip/?url=' + videoUrl);
 
     (function () {
         var s = $('input'),
@@ -155,7 +155,7 @@
             f.addClass('explode');
             setTimeout(function () {
                 var videoUrl = s.val();
-                $("#videoIframe").attr('src', 'https://api.pangujiexi.com/player.php?url=' + videoUrl);
+                $("#videoIframe").attr('src', 'http://http://app.baiyug.cn:2019/vip/?url=' + videoUrl);
                 history.pushState('', '', '?url=' + videoUrl);
                 s.val('');
                 f.removeClass('explode');
