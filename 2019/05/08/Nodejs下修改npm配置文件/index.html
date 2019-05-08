@@ -8,7 +8,7 @@
 
   <!-- Title -->
   
-  <title>page - LeoMason</title>
+  <title>Nodejs下修改npm配置文件 - LeoMason</title>
 
   <!--Favicon-->
   <link rel="icon" href="favicon/favicon.ico">
@@ -89,62 +89,37 @@
 
 
   		<div class="row">
-  			
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2017/10/31/Chrome快捷操作/">
-      <img class="img-fluid portfolio-img" src="/images/6.jpg" alt="Chrome快捷操作">
-      <div class="overlay">
-        <span class="overlay-text">Chrome快捷操作</span>
-      </div>
-    </a>
-  </div>
+  			<div class="col-12 mb-4">
+  <img class="img-fluid project-img" src="/images/13.jpg" alt="Nodejs下修改npm配置文件">
 </div>
-
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2017/10/26/docker入门/">
-      <img class="img-fluid portfolio-img" src="/images/5.jpg" alt="docker入门">
-      <div class="overlay">
-        <span class="overlay-text">docker入门</span>
-      </div>
-    </a>
-  </div>
+<div class="col-lg-4 col-12 pt-3 px-4 pr-lg-5">
+  <h1>Nodejs下修改npm配置文件</h1>
 </div>
+<div class="col-lg-8 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
+  <p>安装完成nodejs后默认的npm下载的模块都在<code>%appdata%\node_modules\</code>下,要改变其位置可使用命令:</p>
+<pre class=" language-shell"><code class="language-shell"># 设置自定义的node_modules的存放路径
+npm config set prefix "D:\DevProgramFiles\nodejs\node_modules"
+# 设置自定义的node_cache缓存的存放路径
+npm config set cache "D:\DevProgramFiles\nodejs\node_cache"
+</code></pre>
+<p>设置完成后,可以查一下:</p>
+<pre class=" language-shell"><code class="language-shell"># 查看设置的值
+npm config get prefix
+npm config get cache
+</code></pre>
+<p>其实这个操作改变的是<code>%userprofile%\.npmrc</code><a href="关于windows下系统下全部变量名字的查看cmd键入`set`查看">^1</a>文件,所以当然也可直接使用自己的编辑器编辑这个文件,也可使用通过命令使用系统默认编辑器打开:</p>
+<pre class=" language-shell"><code class="language-shell">npm config edit
+</code></pre>
+<p>文件中添加内容:</p>
+<pre><code>prefix=D:\DevProgramFiles\nodejs\node_modules
+cache=D:\DevProgramFiles\nodejs\node_cache
+</code></pre><p>这个<code>.npmrc</code>文件是当前用户下的npm配置文件,这个配置文件继承自<code>nodejs\node_modules\npm\npmrv</code>这个全局配置文件.</p>
 
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2017/10/21/百度网盘第三方客户端PCS完整高级使用教程/">
-      <img class="img-fluid portfolio-img" src="/images/3.jpg" alt="百度网盘第三方客户端PCS完整高级使用教程">
-      <div class="overlay">
-        <span class="overlay-text">百度网盘第三方客户端PCS完整高级使用教程</span>
-      </div>
-    </a>
-  </div>
 </div>
-
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2016/03/21/mysql事务和连接池/">
-      <img class="img-fluid portfolio-img" src="/images/4.jpg" alt="mysql事务和连接池">
-      <div class="overlay">
-        <span class="overlay-text">mysql事务和连接池</span>
-      </div>
-    </a>
-  </div>
-</div>
-
 
 
       </div>
       
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/"><</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">></a>
-    </nav>
-
   	</div>
 
     <!-- After footer scripts -->
